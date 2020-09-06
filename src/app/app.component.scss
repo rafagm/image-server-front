@@ -6,6 +6,7 @@
 
   .row {
     height: 100%;
+    flex-wrap: nowrap;
   }
 
   .search {
@@ -20,13 +21,34 @@
     justify-content: center;
     align-items: center;
     overflow-y: auto;
-    flex: 1 1 50%;
+    flex: 1 1;
+    min-height: 85%;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: $color-primary;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $color-secondary;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: darken($color: $color-secondary, $amount: 20);
+    }
   }
   .upload {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto 0;
+    margin: 1rem 0;
+    flex-basis: 1 1;
 
     &__button {
       position: relative;
