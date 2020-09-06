@@ -1,0 +1,69 @@
+@import "../assets/scss/abstracts/variables";
+
+.wrapper {
+  color: whitesmoke;
+  height: 100vh;
+
+  .row {
+    height: 100%;
+  }
+
+  .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid aqua;
+  }
+
+  .images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    border: 1px solid orange;
+    flex: 1 1 50%;
+  }
+  .upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    margin: auto 0;
+
+    &__button {
+      position: relative;
+      display: inline-block;
+      border: 0;
+      padding: .9rem 3.7rem;
+      color: $color-black;
+      border-radius: 1.2em;
+      font-family: "Russo One", sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      background-color: transparent;
+      background-image: linear-gradient(270deg, $color-secondary  0%, $color-secondary  50%, darken($color-secondary, 40) 50%);
+      background-size: 250%;
+      background-position: 100% 0;
+      background-repeat: no-repeat;
+
+      transition: all .2s;
+
+      &:focus {
+        outline: 0;
+      }
+
+      &:hover {
+        transform: translateY(-3px);
+        background-position: 0 0;
+        box-shadow: 0 0 1.1rem rgba(255, 255, 255, 0.1), 0px 8px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      &:active {
+        transform: none;
+        //background-color: $color-secondary;
+        box-shadow: none;
+      }
+
+    }
+  }
+}
