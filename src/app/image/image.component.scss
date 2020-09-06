@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.image {
+  max-height: 20rem;
+  max-width: 100%;
+  align-self: center;
+  margin: 1rem;
+  border-radius: 5px;
+}
