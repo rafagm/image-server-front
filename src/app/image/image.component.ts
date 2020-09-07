@@ -25,7 +25,6 @@ export class ImageComponent implements OnInit {
   }
 
   trackImage(index, image) {
-    console.log(index, image);
 
   }
 

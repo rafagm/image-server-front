@@ -4,12 +4,14 @@
     <div class="images col">
       <div class="row">
         <div class="col">
-          <app-image [images]=images></app-image>
+          <app-image [images]="images"></app-image>
         </div>
       </div>
     </div>
-    <div class="upload col" >
-      <button class="upload__button">Upload image</button>
+    <div class="upload col">
+      <button class="upload__button" (click)="openFile()">Upload image
+        <input class="d-none" type="file" (change)="uploadImage($event)">
+      </button>
     </div>
   </div>
 </div>

@@ -12,12 +12,28 @@ export class AppComponent {
   images: Image[];
 
   constructor(private imageService: ImageService) {
-    this.getALLImages();
+    this.getALLImagesPagination(0, 2,);
   }
 
   getALLImages() {
     this.imageService
       .getAllImages()
       .subscribe((images: Image[]) => (this.images = images));
+  }
+
+  getALLImagesPagination(pageNo?, pageSize?, sortBy?) {
+    this.imageService
+      .getAllImagesPagination(pageNo, pageSize, sortBy)
+      .subscribe((images: Image[]) => (this.images = images));
+  }
+
+  openFile() {
+    document.querySelector("input").click();
+  }
+
+  uploadImage(event) {
+    console.log("app component");
+
+    this.imageService.uploadImage(event);
   }
 }
