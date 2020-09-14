@@ -1,17 +1,33 @@
 <div class="wrapper container-fluid">
   <div class="row flex-column">
     <!-- <div class="search col">search</div> -->
-    <div class="images col">
-      <div class="row">
+    <div class="images col"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [scrollWindow]="false"
+    (scrolled)="onScroll()">
+      <div class="row w-100">
         <div class="col">
-          <app-image [images]="images"></app-image>
+          <app-image
+            [images]="images"></app-image>
         </div>
       </div>
     </div>
     <div class="upload col">
-      <button class="upload__button" (click)="openFile()">Upload image
-        <input class="d-none" type="file" (change)="uploadImage($event)">
+      <button
+        class="upload__button"
+        (click)="openFile()">
+        Upload image
+        <input
+          class="d-none"
+          type="file"
+          (change)="uploadImage($event)">
       </button>
     </div>
   </div>
+</div>
+
+
+<div class="spinner-border"  [ngStyle]="{'display': showSpinner ? 'flex' : 'none'}" role="status">
+  <span class="sr-only">Loading images...</span>
 </div>
