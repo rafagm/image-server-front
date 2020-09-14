@@ -5,7 +5,8 @@
     infiniteScroll
     [infiniteScrollDistance]="2"
     [scrollWindow]="false"
-    (scrolled)="onScroll()">
+    (scrolled)="onScroll()"
+    (scrolledUp)="onScrollUp()">
       <div class="row w-100">
         <div class="col">
           <app-image
