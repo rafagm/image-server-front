@@ -1,9 +1,8 @@
 <div class="wrapper">
   <img
-    class="image"
+    class="image wow animate__animated animate__fadeIn animate__slow"
     [src]="imageUrl(image.imageBytes)"
     [alt]="image.name"
-    *ngFor="let image of images"
-    [@fadeInAnimaton]="'fadeIn'">
+    *ngFor="let image of images">
 
 </div>

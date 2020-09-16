@@ -10,6 +10,8 @@ import { ImageComponent } from './image/image.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { NgwWowModule } from 'ngx-wow';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     InfiniteScrollModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgwWowModule
   ],
   providers: [],
   bootstrap: [AppComponent]

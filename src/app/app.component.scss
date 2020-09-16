@@ -20,7 +20,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex: 1 1;
     min-height: 85%;
     &::-webkit-scrollbar {
@@ -141,3 +141,5 @@
     font-family: "Russo One", sans-serif;
   }
 }
+
+
