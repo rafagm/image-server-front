@@ -3,6 +3,7 @@
     class="image"
     [src]="imageUrl(image.imageBytes)"
     [alt]="image.name"
-    *ngFor="let image of images">
+    *ngFor="let image of images"
+    [@fadeInAnimaton]="'fadeIn'">
 
 </div>

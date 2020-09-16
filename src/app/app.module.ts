@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageComponent } from './image/image.component';
 
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
