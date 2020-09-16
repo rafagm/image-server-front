@@ -62,15 +62,12 @@ export class AppComponent {
 
     pageNo = Math.max(0, pageNo);
 
-    console.log({pageNo});
+    this.imageService
+    .getAllImagesPagination(pageNo, pageSize, sortBy)
+    .subscribe((images: Image[]) => {
+      this.hideSpinners();
 
-
-    setTimeout(() => {
-      this.imageService
-      .getAllImagesPagination(pageNo, pageSize, sortBy)
-      .subscribe((images: Image[]) => {
-        this.hideSpinners();
-
+      if (images.length > 0) {
         this.pageNo = pageNo;
 
         if (!scrolledUp)  {
@@ -80,9 +77,9 @@ export class AppComponent {
           this.images = images.concat(this.images);
           this.images = this.images.slice(0, Math.min(this.images.length, this.imagesSize));
         }
+      }
 
-      });
-    }, 0);
+    });
   }
 
   showSpinners(scrolledUp) {
@@ -95,14 +92,12 @@ export class AppComponent {
   }
 
   onScroll() {
-    console.log("Scrolled Down");
 
     this.scrolledDownCounter++;
     this.getALLImagesPagination(this.pageNo + 1, this.pageSize);
   }
 
   onScrollUp() {
-    console.log("Scrolled Up");
 
     if (this.pageNo > 0) {
       this.scrolledUp = true;
