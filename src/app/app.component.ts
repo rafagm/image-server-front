@@ -20,11 +20,14 @@ export class AppComponent {
 
   private scrolledUp = false;
   private scrolledDownCounter = 0;
+  private scrolledUpCounter = 0;
 
   showBottomSpinner = false;
   showTopSpinner = false;
 
   showRunOutOfImagesWarning = false;
+
+  infiniteScrollDisabled = false;
 
   constructor(private imageService: ImageService) {
     this.setPageSize();
@@ -37,7 +40,7 @@ export class AppComponent {
     if (width <= 475)
       this.pageSize = 5;
     else if (width <= 1150)
-      this.pageSize = 5;
+      this.pageSize = 10;
     else
       this.pageSize = 30;
 
@@ -62,7 +65,13 @@ export class AppComponent {
       this.scrolledDownCounter = 0;
     }
 
+    if (!scrolledUp)
+      this.scrolledUpCounter = 0;
+
     pageNo = Math.max(0, pageNo);
+
+    console.log({pageNo});
+
 
     this.imageService
     .getAllImagesPagination(pageNo, pageSize, sortBy)
@@ -99,18 +108,29 @@ export class AppComponent {
   }
 
   onScroll() {
-
+    this.disableInfiniteScroll();
     this.scrolledDownCounter++;
     this.getALLImagesPagination(this.pageNo + 1, this.pageSize);
   }
 
   onScrollUp() {
+    this.disableInfiniteScroll();
 
-    if (this.pageNo > 0) {
+    if (this.pageNo > 1 || (this.pageNo === 1 && this.scrolledUpCounter > 0)) {
       this.scrolledUp = true;
       this.getALLImagesPagination(this.pageNo - 1, this.pageSize, null, true);
     }
 
+    this.scrolledUpCounter++;
+
+  }
+
+  disableInfiniteScroll() {
+    this.infiniteScrollDisabled = true;
+
+    setTimeout(() => {
+      this.infiniteScrollDisabled = false;
+    }, 500);
   }
 
   openFile() {
