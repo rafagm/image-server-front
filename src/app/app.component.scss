@@ -88,10 +88,19 @@
 }
 
 
-
-.spinner-border {
+.spinner-wrapper {
   position: absolute;
   bottom: 15%;
-  left: 48%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-primary;
+  border-radius: 10000px;
+  padding: .5rem;
+}
+.spinner-border {
   color: $color-secondary;
+  position: relative;
 }

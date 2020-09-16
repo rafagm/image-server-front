@@ -80,7 +80,7 @@ export class AppComponent {
         }
 
       });
-    }, 200);
+    }, 300);
   }
 
   onScroll() {
