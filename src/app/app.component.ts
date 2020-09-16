@@ -21,7 +21,8 @@ export class AppComponent {
   private scrolledUp = false;
   private scrolledDownCounter = 0;
 
-  showSpinner = true;
+  showBottomSpinner = false;
+  showTopSpinner = false;
 
   constructor(private imageService: ImageService) {
     this.setPageSize();
@@ -48,7 +49,8 @@ export class AppComponent {
   }
 
   getALLImagesPagination(pageNo?, pageSize?, sortBy?, scrolledUp = false) {
-    this.showSpinner = true;
+    this.showSpinners(scrolledUp);
+
 
     if (this.scrolledUp && !scrolledUp) {
       pageNo = this.pageNo + Math.floor(this.imagesSize / this.pageSize);
@@ -67,7 +69,7 @@ export class AppComponent {
       this.imageService
       .getAllImagesPagination(pageNo, pageSize, sortBy)
       .subscribe((images: Image[]) => {
-        this.showSpinner = false;
+        this.hideSpinners();
 
         this.pageNo = pageNo;
 
@@ -80,7 +82,16 @@ export class AppComponent {
         }
 
       });
-    }, 300);
+    }, 0);
+  }
+
+  showSpinners(scrolledUp) {
+    if (!scrolledUp) this.showBottomSpinner = true;
+    else this.showTopSpinner = true;
+  }
+
+  hideSpinners() {
+    this.showBottomSpinner = this.showTopSpinner = false;
   }
 
   onScroll() {

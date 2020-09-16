@@ -100,6 +100,11 @@
   border-radius: 10000px;
   padding: .5rem;
 }
+
+.spinner-top {
+  bottom: auto;
+  top: 10%;
+}
 .spinner-border {
   color: $color-secondary;
   position: relative;

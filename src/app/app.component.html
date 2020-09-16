@@ -29,8 +29,13 @@
   </div>
 </div>
 
+<div class="spinner-wrapper spinner-top" [ngStyle]="{'display': showTopSpinner ? 'flex' : 'none'}">
+  <div class="spinner-border"   role="status">
+    <span class="sr-only">Loading images...</span>
+  </div>
+</div>
 
-<div class="spinner-wrapper" [ngStyle]="{'display': showSpinner ? 'flex' : 'none'}">
+<div class="spinner-wrapper" [ngStyle]="{'display': showBottomSpinner ? 'flex' : 'none'}">
   <div class="spinner-border"   role="status">
     <span class="sr-only">Loading images...</span>
   </div>
