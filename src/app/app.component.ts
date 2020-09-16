@@ -60,6 +60,9 @@ export class AppComponent {
 
     pageNo = Math.max(0, pageNo);
 
+    console.log({pageNo});
+
+
     setTimeout(() => {
       this.imageService
       .getAllImagesPagination(pageNo, pageSize, sortBy)
@@ -81,12 +84,16 @@ export class AppComponent {
   }
 
   onScroll() {
+    console.log("Scrolled Down");
+
     this.scrolledDownCounter++;
     this.getALLImagesPagination(this.pageNo + 1, this.pageSize);
   }
 
   onScrollUp() {
-    if (this.pageNo !== 0) {
+    console.log("Scrolled Up");
+
+    if (this.pageNo > 1) {
       this.scrolledUp = true;
       this.getALLImagesPagination(this.pageNo - 1, this.pageSize, null, true);
     }
