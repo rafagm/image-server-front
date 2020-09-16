@@ -24,6 +24,8 @@ export class AppComponent {
   showBottomSpinner = false;
   showTopSpinner = false;
 
+  showRunOutOfImagesWarning = false;
+
   constructor(private imageService: ImageService) {
     this.setPageSize();
     this.getALLImagesPagination(0, this.pageSize);
@@ -77,6 +79,11 @@ export class AppComponent {
           this.images = images.concat(this.images);
           this.images = this.images.slice(0, Math.min(this.images.length, this.imagesSize));
         }
+      } else {
+        this.showRunOutOfImagesWarning = true;
+        setTimeout(() => {
+          this.showRunOutOfImagesWarning = false;
+        }, 2000);
       }
 
     });
@@ -111,7 +118,6 @@ export class AppComponent {
   }
 
   uploadImage(event) {
-    console.log("app component");
 
     this.imageService.uploadImage(event);
   }

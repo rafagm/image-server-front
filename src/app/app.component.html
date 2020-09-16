@@ -40,3 +40,11 @@
     <span class="sr-only">Loading images...</span>
   </div>
 </div>
+
+<div class="warning runOutOfImages" [ngStyle]="{'display': showRunOutOfImagesWarning ? 'flex' : 'none'}">
+  <div class="warning__header"></div>
+  <div class="warning__text">
+    There aren't images left
+  </div>
+</div>
+
