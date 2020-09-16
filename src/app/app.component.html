@@ -3,7 +3,8 @@
     <!-- <div class="search col">search</div> -->
     <div class="images col"
     infiniteScroll
-    [infiniteScrollDistance]="2"
+    [infiniteScrollDistance]="1"
+    infiniteScrollThrottle="400"
     [scrollWindow]="false"
     (scrolled)="onScroll()"
     (scrolledUp)="onScrollUp()">
