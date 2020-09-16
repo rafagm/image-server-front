@@ -104,7 +104,7 @@ export class AppComponent {
   onScrollUp() {
     console.log("Scrolled Up");
 
-    if (this.pageNo > 1) {
+    if (this.pageNo > 0) {
       this.scrolledUp = true;
       this.getALLImagesPagination(this.pageNo - 1, this.pageSize, null, true);
     }
