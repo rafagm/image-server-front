@@ -2,13 +2,13 @@
   <div class="row flex-column">
     <div class="images col"
     infiniteScroll
-    [infiniteScrollDistance]="1"
-    infiniteScrollThrottle="400"
+    [infiniteScrollDistance]="0"
+    infiniteScrollThrottle="500"
     [infiniteScrollDisabled]="infiniteScrollDisabled"
     [scrollWindow]="false"
     (scrolled)="onScroll()"
     (scrolledUp)="onScrollUp()">
-      <div class="row w-100">
+      <div class="row w-75">
         <div class="col">
           <app-image
             [images]="images"></app-image>

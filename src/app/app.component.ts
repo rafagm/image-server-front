@@ -31,6 +31,9 @@ export class AppComponent {
 
   showRunOutOfImagesWarning = false;
 
+  private isLastPage = false;
+  private lastPageSize = 0;
+
   infiniteScrollDisabled = false;
 
   private wowSubscription: Subscription;
@@ -56,7 +59,7 @@ export class AppComponent {
     const width = window.innerWidth > 0 ? window.innerWidth : screen.width; //get the screen's width
 
     if (width <= 475) this.pageSize = 5;
-    else if (width <= 1150) this.pageSize = 10;
+    else if (width <= 1150) this.pageSize = 9;
     else this.pageSize = 30;
 
     this.imagesSize = this.pageSize * 2;
@@ -90,10 +93,25 @@ export class AppComponent {
       .subscribe((images: Image[]) => {
         this.hideSpinners();
 
-        if (images.length > 0) {
+        let flagLastPage = false;
+        if (images.length !== pageSize && images.length > 0) {
+          flagLastPage = true;
+          this.lastPageSize = images.length;
+        }
+
+        if (images.length > 0 ) {
           this.pageNo = pageNo;
 
-          if (!scrolledUp) {
+          if (this.isLastPage) {
+            images = images.slice(0, this.lastPageSize);
+            this.images = images.concat(this.images);
+            this.images = this.images.slice(
+              0,
+              Math.min(this.images.length, this.imagesSize)
+            );
+
+            this.isLastPage = false;
+          } else if (!scrolledUp) {
             this.images = this.images.concat(images);
             this.images = this.images.slice(
               Math.max(0, this.images.length - this.imagesSize)
@@ -105,12 +123,16 @@ export class AppComponent {
               Math.min(this.images.length, this.imagesSize)
             );
           }
-        } else {
+        }  else {
           this.showRunOutOfImagesWarning = true;
           setTimeout(() => {
             this.showRunOutOfImagesWarning = false;
           }, 2000);
         }
+
+        if (flagLastPage)
+          this.isLastPage = true;
+
       });
   }
 
