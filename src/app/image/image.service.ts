@@ -1,13 +1,19 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpEvent, HttpEventType } from "@angular/common/http";
 import { Image } from "./image.model";
+import { UploadService } from "./upload.service";
+import { map } from "rxjs/internal/operators/map";
+import { last } from 'rxjs/operators';
 
 @Injectable({
   providedIn: "root",
 })
 export class ImageService {
-  constructor(private http: HttpClient) {
+  private uploadSubscription;
+  private percentage = 0;
+
+  constructor(private http: HttpClient, private uploadService: UploadService) {
     console.log("ImageService injected!!");
   }
 
@@ -18,7 +24,7 @@ export class ImageService {
   getAllImagesPagination(pageNo?, pageSize?, sortBy?) {
     let params = {
       pageNo,
-      pageSize
+      pageSize,
     };
 
     if (sortBy) params["sortBy"] = sortBy;
@@ -30,17 +36,47 @@ export class ImageService {
     const fileList: FileList = event.target.files;
 
     if (fileList.length > 0) {
-      const file: File = fileList[0];
+      Array.from(fileList).forEach((file: File) => {
+        this.showProgress();
 
-      const formData: FormData = new FormData();
-      formData.append("file", file);
+        this.uploadSubscription = this.uploadService
+          .uploadFile(file)
+          .pipe(map((data) => {
+            this.getEventMessage(data);
+          }),
+          last())
+          .subscribe(
+            () => {
 
-      let headers = new HttpHeaders();
+            },
+            () => {
+              // on error
+              this.percentage = 0;
 
-      this.http.post(`${environment.IMAGE_API}`, formData).subscribe(
-        (data) => console.log("success"),
-        (error) => console.log(error)
-      );
+            });
+      });
     }
+  }
+
+  showProgress() {
+
+  }
+
+  private getEventMessage(event: HttpEvent<any>) {
+    switch (event.type) {
+      case HttpEventType.Sent:
+        this.percentage = 0;  // upload percentage
+        break;
+
+      case HttpEventType.UploadProgress:
+        const percentDone = Math.round(100 * event.loaded / event.total);
+        this.percentage = percentDone;
+        break;
+
+      case HttpEventType.Response:
+        this.percentage = 100; // file is uploaded
+    }
+
+
   }
 }

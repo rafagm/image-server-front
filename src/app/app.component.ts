@@ -3,7 +3,7 @@ import { ImageService } from "./image/image.service";
 import { Image } from "./image/image.model";
 import { NgwWowService } from "ngx-wow";
 import { Subscription } from "rxjs";
-import { Router, NavigationEnd } from "@angular/router";
+import { Router, NavigationEnd } from '@angular/router';
 import { filter } from "rxjs/operators";
 
 @Component({

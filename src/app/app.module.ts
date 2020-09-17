@@ -11,11 +11,13 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgwWowModule } from 'ngx-wow';
+import { FileComponent } from './upload/file/file.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ImageComponent
+    ImageComponent,
+    FileComponent
   ],
   imports: [
     BrowserModule,

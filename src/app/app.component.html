@@ -1,17 +1,17 @@
 <div class="wrapper container-fluid">
   <div class="row flex-column">
-    <div class="images col"
-    infiniteScroll
-    [infiniteScrollDistance]="1"
-    infiniteScrollThrottle="300"
-    [infiniteScrollDisabled]="infiniteScrollDisabled"
-    [scrollWindow]="false"
-    (scrolled)="onScroll()"
-    (scrolledUp)="onScrollUp()">
+    <div
+      class="images col"
+      infiniteScroll
+      [infiniteScrollDistance]="1"
+      infiniteScrollThrottle="300"
+      [infiniteScrollDisabled]="infiniteScrollDisabled"
+      [scrollWindow]="false"
+      (scrolled)="onScroll()"
+      (scrolledUp)="onScrollUp()">
       <div class="row w-75">
         <div class="col">
-          <app-image
-            [images]="images"></app-image>
+          <app-image [images]="images"></app-image>
         </div>
       </div>
     </div>
@@ -23,42 +23,46 @@
         <input
           class="d-none"
           type="file"
+          multiple
           (change)="uploadImage($event)">
       </button>
     </div>
   </div>
 </div>
 
-<div class="spinner-wrapper spinner-top" [ngStyle]="{'display': showTopSpinner ? 'flex' : 'none'}">
-  <div class="spinner-border"   role="status">
+<div
+  class="spinner-wrapper spinner-top"
+  [ngStyle]="{'display': showTopSpinner ? 'flex' : 'none'}">
+  <div
+    class="spinner-border"
+    role="status">
     <span class="sr-only">Loading images...</span>
   </div>
 </div>
 
-<div class="spinner-wrapper" [ngStyle]="{'display': showBottomSpinner ? 'flex' : 'none'}">
-  <div class="spinner-border"   role="status">
+<div
+  class="spinner-wrapper"
+  [ngStyle]="{'display': showBottomSpinner ? 'flex' : 'none'}">
+  <div
+    class="spinner-border"
+    role="status">
     <span class="sr-only">Loading images...</span>
   </div>
 </div>
 
-<div class="warning runOutOfImages" [ngStyle]="{'display': showRunOutOfImagesWarning ? 'flex' : 'none'}">
+<div
+  class="warning runOutOfImages"
+  [ngStyle]="{'display': showRunOutOfImagesWarning ? 'flex' : 'none'}">
   <div class="warning__header"></div>
-  <div class="warning__text">
-    There aren't images left
+  <div class="warning__text">There aren't images left</div>
+</div>
+
+<div
+  id="#uploadProgress"
+  class="uploadProgress">
+  <div class="uploadProgress__header">Uploading</div>
+  <div class="uploadProgress__content">
+    <app-file fileName="test"  class="w-100 d-flex justify-content-center align-items-center"></app-file>
+    <app-file fileName="test"  class="w-100 d-flex justify-content-center align-items-center"></app-file>
   </div>
 </div>
-
-
-<!-- <div class="testwow">
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-    <div class="test card wow animate__animated animate__fadeIn animate__slow"   ></div>
-</div>
- -->

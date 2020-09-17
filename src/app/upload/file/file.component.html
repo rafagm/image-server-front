@@ -1,0 +1,15 @@
+
+    <div class="uploadProgress__file__name">{{ fileName }}</div>
+    <div class="uploadProgress__file__progress">
+      <div class="uploadProgress__file__progress__bar" [ngStyle]="{'width': percentage + '%'}"></div>
+    </div>
+    <div class="uploadProgress__file__status">
+      <svg  *ngIf="!fileError" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#51e41c" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <path d="M5 12l5 5l10 -10" />
+      </svg>
+
+      <svg *ngIf="fileError" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 24 24" stroke="#d1001c">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </div>
